@@ -1,0 +1,46 @@
+{% set name = "rayint" %}
+{% set version = "cuda" %}
+{% set mve_version = "master" %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+  - fn: {{ name }}-{{ version }}.tar.gz
+    url: https://github.com/nmoehrle/rayint/archive/{{ version }}.tar.gz
+    sha256: 81f636422de3579b2efd0f9ffa8fbcec79e5e148114b8926f98856c3882098c4
+    patches:
+      - mve.patch
+  - fn: mve-{{ mve_version }}.tar.gz
+    url: https://github.com/simonfuhrmann/mve/archive/{{ mve_version }}.tar.gz
+    sha256: deaa1bcf04817c602119236e9efdd06a762bc8b0c8bb477ddcec0401d803913a
+    folder: elibs/mve
+
+build:
+    number: 0
+
+requirements:
+  build:
+    # - {{ compiler("c") }}
+    # - {{ compiler("cxx") }}
+    - cmake
+    - ninja
+  host:
+    - libpng
+    - openjpeg
+    - libtiff
+    - mve {{ mve }}
+
+test:
+  commands:
+    - test -f $PREFIX/bin/raycast
+
+about:
+  home: https://github.com/nmoehrle/rayint
+  license: BSD 3-Clause
+  summary: Simple ray intersection library similar to coldet - succedeed by libacc
+
+extra:
+  recipe-maintainers:
+    - v-turin
