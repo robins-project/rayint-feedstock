@@ -1,6 +1,8 @@
 {% set name = "rayint" %}
 {% set version = "cuda" %}
+{% set commit = "d5a8126aebb98c68b2b98bea05fcc8cebb6a2fb9" %}
 {% set mve_version = "master" %}
+{% set mve_commit = "55eb94f34f82694e0f25a7f235c25a06acc0bfae" %}
 
 package:
   name: {{ name }}
@@ -8,13 +10,13 @@ package:
 
 source:
   - fn: {{ name }}-{{ version }}.tar.gz
-    url: https://github.com/nmoehrle/rayint/archive/{{ version }}.tar.gz
-    sha256: 81f636422de3579b2efd0f9ffa8fbcec79e5e148114b8926f98856c3882098c4
+    url: https://github.com/nmoehrle/rayint/archive/{{ commit }}.tar.gz
+    sha256: 54cfd7c962504deb7c8d3afc66123dfcb854a9ae00e492d87a3d9f361f50c5a0
     patches:
       - mve.patch
   - fn: mve-{{ mve_version }}.tar.gz
-    url: https://github.com/simonfuhrmann/mve/archive/{{ mve_version }}.tar.gz
-    sha256: deaa1bcf04817c602119236e9efdd06a762bc8b0c8bb477ddcec0401d803913a
+    url: https://github.com/simonfuhrmann/mve/archive/{{ mve_commit }}.tar.gz
+    sha256: a1880f243b38ec0b669aa638225e45f300c508e621b1ee0fb3d444a665a512cc
     folder: elibs/mve
 
 build:
